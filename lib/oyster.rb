@@ -2,11 +2,12 @@ class Oystercard
   DEAFULT_BALANCE = 0.00
   MAX_BALANCE = 90.00
 
-  attr_reader :balance, :exceeded_balance 
+  attr_reader :balance, :exceeded_balance, :card_status
 
   def initialize(balance = DEAFULT_BALANCE)
     @balance = balance
-  end
+    @card_status = false
+    end
 
   def top_up(amount)
     raise "You've exceeded the amount" if exceeded_balance?(amount)
@@ -21,5 +22,17 @@ class Oystercard
 def exceeded_balance?(amount)
   (@balance += amount) > MAX_BALANCE
 end 
+
+def touch_in
+  @card_status = true
+end
+
+def touch_out
+  @card_status = false
+end
+
+def in_journey?
+  @card_status == true
+end
 
 end

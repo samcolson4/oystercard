@@ -29,6 +29,26 @@ describe Oystercard do
     expect { subject.deduct(amount) }.to change { subject.balance }.from(10.00).to(5.00)
     end
 
+  end
+
+  describe "Card status" do
+    it "#touch_in changes card status to 'in use'" do
+      subject.instance_variable_set(:@card_status, false)
+      expect { subject.touch_in }.to change { subject.card_status }.from(false).to(true)
     end
+    
+    it "touch_out changes card status to 'not in use'" do
+      subject.instance_variable_set(:@card_status, true)
+      expect { subject.touch_out }.to change { subject.card_status }.from(true).to(false)
+    end
+
+    it "#in_journey? returns true if card is 'in use'" do
+      subject.instance_variable_set(:@card_status, true)
+      expect(subject.in_journey?).to eq true
+    end
+
+  end
+
+
   end 
 end
