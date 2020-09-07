@@ -52,9 +52,9 @@ describe Oystercard do
       expect(subject.in_journey?).to eq true
     end
 
-    it "Adds entry_station when touched_in" do
-    
-    end
+  
+  describe "entry station at touch in" do 
+    let(:oystercard) { double :card }
 
   end
 
