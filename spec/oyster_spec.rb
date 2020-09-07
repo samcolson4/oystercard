@@ -21,7 +21,14 @@ describe Oystercard do
       expect { subject.top_up(amount) }.to raise_error "You've exceeded the amount"
     end 
   end 
-end 
 
+  describe "Charging a card for a journey" do
+    it "Should return a message on deducting an amount" do
+    amount = 5.00
+    subject.instance_variable_set(:@balance, 10.00)
+    expect { subject.deduct(amount) }.to change { subject.balance }.from(10.00).to(5.00)
+    end
 
+    end
+  end 
 end

@@ -14,6 +14,10 @@ class Oystercard
    return "Your card is topped up"
   end 
 
+  def deduct(amount)
+    @balance -= amount
+  end
+
 def exceeded_balance?(amount)
   (@balance += amount) > MAX_BALANCE
 end 
