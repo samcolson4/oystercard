@@ -2,8 +2,7 @@ require 'oyster'
 
 describe Oystercard do
   describe '#balance' do
-     # set the balance
-      it { expect(subject.balance).to be_an Float } 
+    it { expect(subject.balance).to be_an Float } 
   end
 
   describe "topping up the card" do 
@@ -23,10 +22,8 @@ describe Oystercard do
   end 
 
   describe "Charging a card for a journey" do
-    it "Should return a message on deducting an amount" do
-    amount = 5.00
-    subject.instance_variable_set(:@balance, 10.00)
-    expect { subject.deduct(amount) }.to change { subject.balance }.from(10.00).to(5.00)
+    it "Should deduct the minimum fare on #touch_out" do
+      expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_FARE)
     end
 
   end
