@@ -8,13 +8,14 @@ class Oystercard
   def initialize(balance = DEAFULT_BALANCE)
     @balance = balance
     @card_status = false
+    
     end
 
   def top_up(amount)
     raise "You've exceeded the amount" if exceeded_balance?(amount)
     @balance += amount 
    return "Your card is topped up"
-  end 
+  end
 
   def exceeded_balance?(amount)
     (@balance += amount) > MAX_BALANCE
@@ -42,5 +43,4 @@ class Oystercard
   def deduct(amount)
     @balance -= amount
   end
-
 end

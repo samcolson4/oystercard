@@ -25,7 +25,6 @@ describe Oystercard do
     it "Should deduct the minimum fare on #touch_out" do
       expect { subject.touch_out }.to change { subject.balance }.by(-Oystercard::MINIMUM_FARE)
     end
-
   end
 
   describe "Card status" do
@@ -51,6 +50,10 @@ describe Oystercard do
     it "#in_journey? returns true if card is 'in use'" do
       subject.instance_variable_set(:@card_status, true)
       expect(subject.in_journey?).to eq true
+    end
+
+    it "Adds entry_station when touched_in" do
+    
     end
 
   end
