@@ -2,7 +2,7 @@ class Oystercard
   DEAFULT_BALANCE = 0.00
   MAX_BALANCE = 90.00
 
-  attr_reader :balance, :exceeded_balance, :card_status
+  attr_reader :balance, :card_status
 
   def initialize(balance = DEAFULT_BALANCE)
     @balance = balance
@@ -24,6 +24,7 @@ def exceeded_balance?(amount)
 end 
 
 def touch_in
+  raise "Not enough money" if sufficient_balance?
   @card_status = true
 end
 
@@ -34,5 +35,9 @@ end
 def in_journey?
   @card_status == true
 end
+
+def sufficient_balance?
+  @balance < 1
+end 
 
 end

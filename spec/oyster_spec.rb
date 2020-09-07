@@ -32,10 +32,19 @@ describe Oystercard do
   end
 
   describe "Card status" do
+    context "letting touch_in when enough balance" do 
+      before do
+        allow(subject).to receive(:sufficient_balance?).and_return false
+      end
     it "#touch_in changes card status to 'in use'" do
       subject.instance_variable_set(:@card_status, false)
       expect { subject.touch_in }.to change { subject.card_status }.from(false).to(true)
     end
+  end 
+
+    it "doesnt let touch in if balance is less than 1" do
+    expect { subject.touch_in }.to raise_error 
+    end 
     
     it "touch_out changes card status to 'not in use'" do
       subject.instance_variable_set(:@card_status, true)
